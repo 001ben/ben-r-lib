@@ -15,7 +15,7 @@ get_all_cycles = function(edge_list, silent=FALSE) {
     current_paths = rename(id_edges, start=from)
   )
   
-  error_limit = 10
+  error_limit = 20
   current_val = 1
   while(nrow(cycle_pack$current_paths) > 0 & current_val < error_limit) {
     if(!silent) cat('Cycle join number', current_val, '\n')
