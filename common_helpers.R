@@ -43,7 +43,7 @@ get_all_cycles = function(edge_list, silent=FALSE) {
       mutate(cycle_found = map_lgl(path, ~ anyDuplicated(.x)>0), to = ifelse(cycle_found, NA, to))
   }
   
-  expanded_paths = path_accumulator %>%
+  path_accumulator %>%
     mutate(cycle_length =map_int(path, length), cycle_start = cycle_length - map_int(path, . %>% rev %>% anyDuplicated)) %>%
     mutate(cycle_nodes = pmap(list(path, cycle_start, cycle_length - 1), ~ ..1[..2:..3])) %>%
     mutate(path_summary = map_chr(cycle_nodes, . %>% sort %>% paste0(collapse='>'))) %>%
